@@ -171,22 +171,34 @@ class GameTable
 }
 
 
-$GameTable = new GameTable('standart', ['Ваня', 'Катя', 'Миша']);
+session_start();
+
+if (!isset($_SESSION['GameTable'])) {
+    $GameTable = new GameTable('standart', ['Ваня', 'Катя', 'Миша']);
+    echo 'init';
+} else {
+    $GameTable = unserialize($_SESSION['GameTable']);
+    echo 'session';
+}
 
 echo '<pre>';
 print_r($GameTable);
 echo '</pre>';
 
-while ($GameTable->checkAttraction()) {
-    //roll dice
-    $roll = $GameTable->getRoll();
-    //check roll cards
-    print_r($roll);
-    //buy card
-    echo 'tt1';
+//check win
+$GameTable->checkAttraction();
 
-    //change player
+//roll dice
+$roll = $GameTable->getRoll();
+//check roll cards
+print_r($roll);
+//buy card
 
-    //repeat
-}
-echo 'tt2';
+
+//change player
+
+//repeat
+
+
+//save state
+$_SESSION['GameTable'] = serialize($GameTable);
