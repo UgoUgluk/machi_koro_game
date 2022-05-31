@@ -4,10 +4,9 @@ namespace UgoUgluk\MachiKoroGame;
 
 class PlayerPlus extends PlayerStandart
 {
-    function __construct(string $name)
+    function __construct(string $name, AllCardsStandart $obCards)
     {
-        parent::__construct($name);
-        $arCards = new AllCardsPlus();
-        $this->arCards[20] = new Card($arCards->getCardByID(20), 1); //стартовая мерия
+        parent::__construct($name, $obCards);
+        $this->arCards[20] = new Card($obCards->getCardByID(20), 1); //стартовая мерия
     }
 }

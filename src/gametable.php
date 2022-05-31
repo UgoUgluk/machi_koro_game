@@ -27,11 +27,11 @@ class GameTable
 
         //создаем игроков
         foreach ($arPlayers as $name) {
-            $this->arPlayers[] = new ($this->getCurrentGameClass('Player'))($name);
+            $this->arPlayers[] = new ($this->getCurrentGameClass('Player'))($name, new ($this->getCurrentGameClass('AllCards')));
         }
 
         //генерируем резерв
-        $this->Reserve = new ($this->getCurrentGameClass('Reserve'));
+        $this->Reserve = new ($this->getCurrentGameClass('Reserve'))(new ($this->getCurrentGameClass('AllCards')));
     }
 
     function getRoll(bool $double = false)
