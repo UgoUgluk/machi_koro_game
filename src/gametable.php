@@ -16,11 +16,11 @@ class GameTable
         if (in_array($type, $this->arTypesOfGame)) {
             $this->typeOfGame = $type;
         } else {
-            $this->typeOfGame = 'standart';
+            $this->typeOfGame = $this->arTypesOfGame[0];
         }
     }
 
-    function __construct(string $type, array $arPlayers)
+    function __construct(array $arPlayers, string $type = '')
     {
         //проверяем и устанавливаем тип игры
         $this->setTypeOfGame($type);

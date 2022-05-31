@@ -3,6 +3,7 @@
 require __DIR__ . '/vendor/autoload.php';
 
 use UgoUgluk\MachiKoroGame\GameTable;
+use UgoUgluk\MachiKoroGame\AllCardsPlus;
 use Kint\Kint;
 
 session_start();
@@ -11,8 +12,12 @@ session_start();
 Kint::$enabled_mode = true;
 d(microtime());
 
+$arCards = new AllCardsPlus();
+d($arCards);
+d($arCards->getAllCards());
+
 //if (!isset($_SESSION['GameTable'])) {
-$GameTable = new GameTable('standart', ['Ваня', 'Катя', 'Миша']);
+$GameTable = new GameTable(['Ваня', 'Катя', 'Миша'], 'plus');
 d('init');
 /*} else {
     $GameTable = unserialize($_SESSION['GameTable']);
