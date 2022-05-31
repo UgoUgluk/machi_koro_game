@@ -1,0 +1,19 @@
+{
+  "name": "ugougluk/machi_koro_game",
+  "description": "Machi Koro game",
+  "type": "project",
+  "autoload": {
+    "psr-4": {
+      "UgoUgluk\\MachiKoroGame\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Oleg Vashkevich",
+      "email": "ugluk@tut.by"
+    }
+  ],
+  "require-dev": {
+    "kint-php/kint": "^4.1"
+  }
+}
