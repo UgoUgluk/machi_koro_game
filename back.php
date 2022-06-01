@@ -8,10 +8,13 @@ use Kint\Kint;
 session_start();
 
 //debug on/off
-Kint::$enabled_mode = true;
+Kint::$enabled_mode = false;
+
+ob_start();
+
 d(microtime());
 
-unset($_SESSION['GameTable']); //new game
+//unset($_SESSION['GameTable']); //new game
 
 if (!isset($_SESSION['GameTable'])) {
     $GameTable = new GameTable(['Ваня', 'Катя', 'Миша'], 'plus');
@@ -37,7 +40,8 @@ $roll = $GameTable->getRoll();
 //repeat
 
 
-
+//out
+include __DIR__ . '/front/app.php';
 
 
 
@@ -47,5 +51,14 @@ $roll = $GameTable->getRoll();
 $_SESSION['GameTable'] = serialize($GameTable);
 
 
-d($GameTable, $roll);
+!d($GameTable, $roll);
 d(microtime());
+
+
+$out = ob_get_contents();
+ob_end_clean();
+
+$json['result'] = $out;
+$json['error'] = 'ok';
+
+echo json_encode($json);

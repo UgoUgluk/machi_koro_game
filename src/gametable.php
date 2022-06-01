@@ -10,6 +10,7 @@ class GameTable
     private string $typeOfGame = 'standart';
     private array $arPlayers = [];
     private object $Reserve;
+    private string $state = 'start';
 
     private function setTypeOfGame(string $type)
     {
@@ -22,16 +23,53 @@ class GameTable
 
     function __construct(array $arPlayers, string $type = '')
     {
-        //проверяем и устанавливаем тип игры
+        //check game type
         $this->setTypeOfGame($type);
 
-        //создаем игроков
+        //create players and his start cards
         foreach ($arPlayers as $name) {
             $this->arPlayers[] = new ($this->getCurrentGameClass('Player'))($name, new ($this->getCurrentGameClass('AllCards')));
         }
 
-        //генерируем резерв
+        //create reserv of cards
         $this->Reserve = new ($this->getCurrentGameClass('Reserve'))(new ($this->getCurrentGameClass('AllCards')));
+    }
+
+    function getCurrentGameClass(string $Classname = '')
+    {
+        $Classname = __NAMESPACE__ . '\\' . $Classname . ucfirst($this->typeOfGame);
+        return $Classname;
+    }
+
+    function nextStep()
+    {
+        switch ($this->state) {
+            case 'start': {
+                    $this->state = 'roll';
+                    return 'go roll';
+                }
+            case 'roll': {
+                    $this->state = 'calc';
+                    return 'go calc';
+                }
+            case 'calc': {
+                    $this->state = 'buy';
+                    return 'go buy';
+                }
+            case 'buy': {
+                    $this->state = 'check';
+                    return 'go check win';
+                }
+            case 'check': {
+                    if ($this->currentPlayer < count($this->arPlayers))
+                        $this->currentPlayer++;
+                    else
+                        $this->currentPlayer = 0;
+
+                    $this->state = 'start';
+                    return 'go next player';
+                }
+        }
     }
 
     function getRoll(bool $double = false)
@@ -47,9 +85,8 @@ class GameTable
         return false;
     }
 
-    function getCurrentGameClass(string $Classname = '')
+    function getPlayers()
     {
-        $Classname = __NAMESPACE__ . '\\' . $Classname . ucfirst($this->typeOfGame);
-        return $Classname;
+        return $this->arPlayers;
     }
 }
