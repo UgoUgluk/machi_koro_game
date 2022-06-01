@@ -4,13 +4,13 @@ namespace UgoUgluk\MachiKoroGame;
 
 class GameTable
 {
-    private int $bank = 220;
-    private int $currentPlayer = 0;
-    private array $arTypesOfGame = ['standart', 'plus', 'sharp'];
-    private string $typeOfGame = 'standart';
-    private array $arPlayers = [];
-    private object $Reserve;
-    private string $state = 'start';
+    public int $bank = 220;
+    public int $currentPlayer = 0;
+    public array $arTypesOfGame = ['standart', 'plus', 'sharp'];
+    public string $typeOfGame = 'standart';
+    public array $arPlayers = [];
+    public object $Reserve;
+    public string $state = 'start';
 
     private function setTypeOfGame(string $type)
     {
@@ -23,8 +23,11 @@ class GameTable
 
     function __construct(array $arPlayers, string $type = '')
     {
+
         //check game type
         $this->setTypeOfGame($type);
+
+        $this->frontdata = get_object_vars($this);
 
         //create players and his start cards
         foreach ($arPlayers as $name) {
@@ -83,10 +86,5 @@ class GameTable
     function checkAttraction()
     {
         return false;
-    }
-
-    function getPlayers()
-    {
-        return $this->arPlayers;
     }
 }

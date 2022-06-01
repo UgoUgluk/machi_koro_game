@@ -4,7 +4,7 @@ namespace UgoUgluk\MachiKoroGame;
 
 class ReserveStandart
 {
-    protected array $arCards = [];
+    public array $arCards = [];
 
     function __construct(AllCardsStandart $obCards)
     {

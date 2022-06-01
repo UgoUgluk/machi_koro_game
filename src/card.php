@@ -4,8 +4,8 @@ namespace UgoUgluk\MachiKoroGame;
 
 class Card
 {
-    private bool $enable = true;
-    private int $count = 1;
+    public bool $enable = true;
+    public int $count = 1;
 
     function __construct(array $arParams, int $count = 1)
     {

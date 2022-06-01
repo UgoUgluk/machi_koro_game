@@ -1,4 +1,9 @@
 <article>
-    <header>{{ player.title }}</header>
-    <section>{{ player.text }}</section>
+    <header>{{ player.name }}</header>
+    <section>Деньги: {{ player.money }}</section>
+    <section>
+    {% for card in player.arCards %}
+        {{ include('card.html.twig') }}
+    {% endfor %}
+    </section>
 </article>

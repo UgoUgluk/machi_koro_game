@@ -4,9 +4,9 @@ namespace UgoUgluk\MachiKoroGame;
 
 class PlayerStandart
 {
-    protected string $name = '';
-    protected int $money = 3;
-    protected array $arCards = [];
+    public string $name = '';
+    public int $money = 3;
+    public array $arCards = [];
 
     function __construct(string $name, AllCardsStandart $obCards)
     {

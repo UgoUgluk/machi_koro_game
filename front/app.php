@@ -5,10 +5,12 @@ require __DIR__ . '/../vendor/autoload.php';
 $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/templates');
 $twig = new \Twig\Environment($loader, [
     //'cache' => __DIR__ . '/cache',
+    'debug' => true,
 ]);
+$twig->addExtension(new \Twig\Extension\DebugExtension());
 
 
-echo $twig->render('layout.html.twig', ['players' => [['title' => 'variables1', 'text' => 'here1'], ['title' => 'variables2', 'text' => 'here2'], ['title' => 'variables3', 'text' => 'here3']]]);
+echo $twig->render('layout.html.twig', ['data' => $GameTable]);
 
 
 /*foreach ($GameTable->getPlayers() as $Player) {

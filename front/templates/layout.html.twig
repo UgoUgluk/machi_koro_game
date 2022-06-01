@@ -1,3 +1,7 @@
-{% for player in players %}
+{{data.bank}}
+{% for player in data.arPlayers %}
+    <pre>
+    {{ dump(player.name) }}
+    <pre>
     {{ include('player.html.twig') }}
 {% endfor %}
