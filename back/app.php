@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 use UgoUgluk\MachiKoroGame\GameTable;
 use Kint\Kint;
@@ -41,7 +41,7 @@ $roll = $GameTable->getRoll();
 
 
 //out
-include __DIR__ . '/front/app.php';
+include __DIR__ . '/../front/app.php';
 
 
 
